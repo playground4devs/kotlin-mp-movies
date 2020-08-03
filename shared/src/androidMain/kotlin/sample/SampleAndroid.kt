@@ -12,13 +12,13 @@ actual object Platform {
 
     actual suspend fun awaitResponse(): String {
         delay(1000)
-        return "Response from $name"
+        return "suspend: Kotlin/MP - shared module (SampleAndroid.kt) - awaitResponse(), for $name"
     }
 
     actual fun flowOfResponse() = flow {
         var counter = 1500
         while (true) {
-            emit(counter.toString())
+            emit("FLOW: Kotlin/MP - shared module (SampleAndroid.kt) - flowOfTest(): $counter")
             delay(1000)
             counter++
         }

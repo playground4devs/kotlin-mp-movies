@@ -18,13 +18,13 @@ expect object Platform {
 
 suspend fun awaitTest(): String {
     delay(1000)
-    return "Test suspend from Kotlin Multiplatform"
+    return "suspend: Kotlin/MP - shared module (Sample.kt) - awaitTest()"
 }
 
 fun flowOfTest() = flow {
     var counter = 1500
     while (true) {
-        emit("Test flow from Kotlin Multiplatform: $counter")
+        emit("FLOW: Kotlin/MP - shared module (Sample.kt) - flowOfTest(): $counter")
         delay(1000)
         counter++
     }
