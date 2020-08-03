@@ -51,6 +51,11 @@ dependencies {
     implementation "androidx.ui:ui-layout:$compose_version"
     implementation "androidx.ui:ui-material:$compose_version"
     implementation "androidx.ui:ui-tooling:$compose_version"
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0-alpha06'
+
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
