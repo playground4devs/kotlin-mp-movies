@@ -29,7 +29,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(kotlin("stdlib-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-1.4.0-rc")
+//                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
             }
         }
         val commonTest by getting {

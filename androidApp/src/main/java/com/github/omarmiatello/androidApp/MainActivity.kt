@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 import sample.awaitTest
+import sample.flowOfTest
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +25,9 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenResumed {
             delay(1000)
-            val response = Platform.awaitResponse()
             val test = awaitTest()
-            println("Response from lib: $response - $test")
-            Platform.flowOfResponse().take(10).collect {
+            println("Response from lib: $test")
+            flowOfTest().take(10).collect {
                 println("Response from lib: $it")
             }
         }

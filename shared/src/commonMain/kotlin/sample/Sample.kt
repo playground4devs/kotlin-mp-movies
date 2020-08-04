@@ -1,7 +1,6 @@
 package sample
 
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 expect class Sample() {
@@ -10,10 +9,6 @@ expect class Sample() {
 
 expect object Platform {
     val name: String
-
-    suspend fun awaitResponse(): String
-
-    fun flowOfResponse(): Flow<String>
 }
 
 suspend fun awaitTest(): String {
