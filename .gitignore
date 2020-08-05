@@ -6,7 +6,6 @@ classes/
 gen/
 /captures
 *.iml
-*.jar
 *.idea
 /androidApp/build
 /shared/build
