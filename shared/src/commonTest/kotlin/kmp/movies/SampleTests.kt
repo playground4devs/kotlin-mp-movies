@@ -1,5 +1,5 @@
-import sample.Proxy
-import sample.Sample
+package kmp.movies
+
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

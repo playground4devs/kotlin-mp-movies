@@ -1,4 +1,4 @@
-package sample
+package kmp.movies
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow

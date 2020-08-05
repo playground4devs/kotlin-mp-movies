@@ -1,4 +1,4 @@
-package sample
+package kmp.movies
 
 import kotlin.test.Test
 import kotlin.test.assertTrue

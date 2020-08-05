@@ -1,0 +1,48 @@
+query popularTitles {
+  popularTitles(limit: 20) {
+    titles {
+      id
+      plot {
+        plotText {
+          plainText
+        }
+      }
+      ratingsSummary {
+        aggregateRating
+        voteCount
+      }
+      genres {
+        genres {
+          text
+        }
+      }
+      releaseDate {
+        day
+        month
+        year
+      }
+      productionStatus {
+        currentProductionStage {
+          text
+        }
+      }
+      metacritic {
+        metascore {
+          score
+        }
+      }
+      primaryImage {
+        url
+        width
+        height
+        caption {
+          plainText
+        }
+        copyright
+      }
+      titleText {
+        text
+      }
+    }
+  }
+}
