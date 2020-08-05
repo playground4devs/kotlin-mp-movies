@@ -3,7 +3,7 @@ package com.github.playground4devs.kmpmovies
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.playground4devs.kmpmovies.ui.SampleTheme
-import sample.Platform
+import com.github.playground4devs.movies.Platform
 
 import androidx.compose.Composable
 import androidx.lifecycle.lifecycleScope
@@ -12,13 +12,13 @@ import androidx.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
-import sample.awaitTest
 
 import androidx.compose.remember
 import androidx.ui.foundation.*
 import androidx.ui.material.*
 import androidx.ui.material.icons.Icons
 import androidx.ui.material.icons.filled.Menu
+import com.github.playground4devs.movies.awaitTest
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

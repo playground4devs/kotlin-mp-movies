@@ -1,4 +1,4 @@
-package kmp.movies
+package com.github.playground4devs.movies
 
 data class Image(
         val url: String,

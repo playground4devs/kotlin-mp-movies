@@ -1,4 +1,4 @@
-package kmp.movies
+package com.github.playground4devs.movies
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport

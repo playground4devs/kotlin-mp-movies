@@ -1,4 +1,4 @@
-package kmp.movies
+package com.github.playground4devs.movies
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
