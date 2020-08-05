@@ -4,7 +4,7 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
 import kotlinx.coroutines.flow.single
 
-class ApolloCoroutinesRepository {
+class MoviesRepository {
     private val apolloClient = ApolloClient(
             networkTransport = ApolloHttpNetworkTransport(
                     serverUrl = "https://graphql.imdb.com/index.html",

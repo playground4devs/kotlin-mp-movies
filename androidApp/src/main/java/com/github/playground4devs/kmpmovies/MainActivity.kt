@@ -18,6 +18,7 @@ import androidx.ui.foundation.*
 import androidx.ui.material.*
 import androidx.ui.material.icons.Icons
 import androidx.ui.material.icons.filled.Menu
+import com.github.playground4devs.movies.MoviesRepository
 import com.github.playground4devs.movies.awaitTest
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
             Platform.flowOfResponse().take(10).collect {
                 println("Response from lib: $it")
             }
+            val repos = MoviesRepository().loadMovies()
+            println(repos)
         }
 
         setContent {
