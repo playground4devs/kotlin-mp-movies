@@ -12,7 +12,7 @@ buildscript {
         classpath("com.android.tools.build:gradle:4.2.0-alpha07")
     }
 }
-group = "com.github.omarmiatello"
+group = "com.github.playground4devs.kmpmovies"
 version = "1.0-SNAPSHOT"
 
 allprojects {

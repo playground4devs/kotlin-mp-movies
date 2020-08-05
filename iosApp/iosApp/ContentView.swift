@@ -3,7 +3,10 @@ import shared
 
 struct ContentView: View {
     var body: some View {
-        Text(SampleKt.hello())
+        List {
+            Text(Proxy().proxyHello())
+            Text(Platform().name)
+        }
     }
 }
 
