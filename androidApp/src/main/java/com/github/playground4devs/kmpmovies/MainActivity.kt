@@ -13,7 +13,7 @@ import androidx.ui.layout.fillMaxWidth
 import androidx.ui.layout.preferredHeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
-import com.github.playground4devs.kmpmovies.preview.ModelSamples
+import com.github.playground4devs.movies.ModelSamples
 import com.github.playground4devs.kmpmovies.ui.MainScreen
 import com.github.playground4devs.movies.Movie
 import com.github.playground4devs.movies.MoviesRepository
@@ -65,6 +65,7 @@ fun MovieListPreview() {
         }
     }
 }
+
 
 
 
