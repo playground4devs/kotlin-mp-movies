@@ -1,10 +1,13 @@
 package com.github.playground4devs.kmpmovies.ui
 
 import androidx.compose.Composable
+import androidx.ui.core.Modifier
+import androidx.ui.foundation.Text
 import androidx.ui.foundation.isSystemInDarkTheme
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.darkColorPalette
-import androidx.ui.material.lightColorPalette
+import androidx.ui.layout.InnerPadding
+import androidx.ui.layout.padding
+import androidx.ui.material.*
+import androidx.ui.tooling.preview.Preview
 
 private val DarkColorPalette = darkColorPalette(
         primary = purple200,
@@ -28,7 +31,7 @@ private val LightColorPalette = lightColorPalette(
 )
 
 @Composable
-fun SampleTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun KmpMovieTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {
@@ -41,4 +44,26 @@ fun SampleTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable
             shapes = shapes,
             content = content
     )
+}
+
+@Composable
+fun MainScreen(title: String, bodyContent: @Composable (InnerPadding) -> Unit) {
+    KmpMovieTheme {
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(title) }
+                )
+            },
+            bodyContent = bodyContent
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun MainScreenPreview() {
+    MainScreen("Title") { innerPadding ->
+        Text("Content", Modifier.padding(innerPadding))
+    }
 }

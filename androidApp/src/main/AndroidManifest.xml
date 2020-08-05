@@ -7,11 +7,11 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SampleTheme">
+        android:theme="@style/Theme.KmpMovieTheme">
         <activity
             android:name="com.github.playground4devs.kmpmovies.MainActivity"
             android:label="KMP Movies"
-            android:theme="@style/Theme.SampleTheme.NoActionBar">
+            android:theme="@style/Theme.KmpMovieTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
