@@ -1,4 +1,4 @@
-package com.github.omarmiatello.androidApp.ui
+package com.github.playground4devs.kmpmovies.ui
 
 import androidx.ui.foundation.shape.corner.RoundedCornerShape
 import androidx.ui.material.Shapes

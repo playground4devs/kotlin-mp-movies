@@ -1,12 +1,11 @@
-package com.github.omarmiatello.androidApp
+package com.github.playground4devs.kmpmovies
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.github.omarmiatello.androidApp.ui.SampleTheme
+import com.github.playground4devs.kmpmovies.ui.SampleTheme
 import sample.Platform
 
 import androidx.compose.Composable
-import androidx.compose.state
 import androidx.lifecycle.lifecycleScope
 import androidx.ui.core.setContent
 import androidx.ui.tooling.preview.Preview
@@ -16,10 +15,7 @@ import kotlinx.coroutines.flow.take
 import sample.awaitTest
 
 import androidx.compose.remember
-import androidx.ui.core.Modifier
 import androidx.ui.foundation.*
-import androidx.ui.layout.fillMaxWidth
-import androidx.ui.layout.preferredHeight
 import androidx.ui.material.*
 import androidx.ui.material.icons.Icons
 import androidx.ui.material.icons.filled.Menu
@@ -56,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                             }
                         )
                     },
-                    ,
                     floatingActionButtonPosition = Scaffold.FabPosition.End,
                     floatingActionButton = {
                         ExtendedFloatingActionButton(

@@ -1,4 +1,4 @@
-package com.github.omarmiatello.androidApp.ui
+package com.github.playground4devs.kmpmovies.ui
 
 import androidx.compose.Composable
 import androidx.ui.foundation.isSystemInDarkTheme

@@ -5,7 +5,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android-extensions")
 }
-group = "com.github.omarmiatello"
+group = "com.github.playground4devs.kmpmovies"
 version = "1.0-SNAPSHOT"
 
 repositories {

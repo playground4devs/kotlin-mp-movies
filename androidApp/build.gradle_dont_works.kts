@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
 }
-group = "com.github.omarmiatello"
+group = "com.github.playground4devs.kmpmovies"
 version = "1.0-SNAPSHOT"
 
 val compose_version = "0.1.0-dev13"
@@ -30,7 +30,7 @@ dependencies {
 android {
     compileSdkVersion(29)
     defaultConfig {
-        applicationId = "com.github.omarmiatello.androidApp"
+        applicationId = "com.github.playground4devs.androidApp"
         minSdkVersion(24)
         targetSdkVersion(29)
         versionCode = 1
