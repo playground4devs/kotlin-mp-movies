@@ -9,14 +9,20 @@ import androidx.compose.Composable
 import androidx.compose.state
 import androidx.lifecycle.lifecycleScope
 import androidx.ui.core.setContent
-import androidx.ui.foundation.Text
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
 import androidx.ui.tooling.preview.Preview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.take
 import sample.awaitTest
+
+import androidx.compose.remember
+import androidx.ui.core.Modifier
+import androidx.ui.foundation.*
+import androidx.ui.layout.fillMaxWidth
+import androidx.ui.layout.preferredHeight
+import androidx.ui.material.*
+import androidx.ui.material.icons.Icons
+import androidx.ui.material.icons.filled.Menu
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +40,47 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             SampleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting(Platform.name)
-                }
+
+                val scaffoldState = remember { ScaffoldState() }
+                Scaffold(
+                    scaffoldState = scaffoldState,
+                    topBar = {
+                        TopAppBar(
+                            title = { Text("Simple Scaffold Screen") },
+                            navigationIcon = {
+                                IconButton(onClick = {
+                                    scaffoldState.drawerState = DrawerState.Opened
+                                }) {
+                                    Icon(Icons.Filled.Menu)
+                                }
+                            }
+                        )
+                    },
+                    ,
+                    floatingActionButtonPosition = Scaffold.FabPosition.End,
+                    floatingActionButton = {
+                        ExtendedFloatingActionButton(
+                            text = { Text("Inc") },
+                            onClick = { /* fab click handler */ }
+                        )
+                    },
+                    bodyContent = { innerPadding ->
+                        //ScrollableColumn(contentPadding = innerPadding) {  // from dev15
+                        VerticalScroller {
+
+                            // A surface container using the 'background' color from the theme
+                            Surface(color = MaterialTheme.colors.background) {
+                                Greeting(Platform.name)
+                            }
+//                            repeat(100) {
+//                                Box(
+//                                    Modifier.fillMaxWidth().preferredHeight(50.dp),
+//                                    backgroundColor = colors[it % colors.size]
+//                                )
+//                            }
+                        }
+                    }
+                )
             }
         }
     }
