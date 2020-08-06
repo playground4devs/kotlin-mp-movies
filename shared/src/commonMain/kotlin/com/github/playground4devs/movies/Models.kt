@@ -16,6 +16,6 @@ data class Movie(
         val plot: String,
         val image: Image?,
         val rating: Double?,
-        val genres: List<String>,
+        val genres: List<String>
 //        val releaseDate: TODO
 )
