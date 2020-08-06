@@ -2,6 +2,7 @@ package com.github.playground4devs.movies
 
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.network.http.ApolloHttpNetworkTransport
+import com.soywiz.klock.DateTime
 import kotlinx.coroutines.flow.single
 
 class MovieFetcher {
@@ -30,7 +31,8 @@ class MovieFetcher {
             plot?.plotText?.plainText.orEmpty(),
             primaryImage?.toImage(),
             ratingsSummary?.aggregateRating,
-            genres?.genres.orEmpty().map { it.text }
+            genres?.genres.orEmpty().map { it.text },
+            this.releaseDate?.toLong()
         )
     }
 
@@ -39,5 +41,13 @@ class MovieFetcher {
             Image(url, width, height, caption.plainText)
         else
             null
+    }
+
+    private fun PopularTitlesQuery.ReleaseDate.toLong(): Long? {
+        return if (month != null && day != null) {
+            DateTime(year, month, day).unixMillisLong
+        } else {
+            null
+        }
     }
 }
