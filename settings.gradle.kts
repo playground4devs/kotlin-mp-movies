@@ -16,7 +16,7 @@ pluginManagement {
         }
     }
 }
-rootProject.name = "kmp2"
+rootProject.name = "kotlin-mp-movies"
 
 
 include(":shared")
