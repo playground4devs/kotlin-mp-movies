@@ -77,6 +77,7 @@ kotlin {
             dependencies {
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
             }
         }
         val iosTest by getting
