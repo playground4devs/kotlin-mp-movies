@@ -6,6 +6,7 @@ object Versions {
     val kotlinxSerialization = "1.0-M1-1.4.0-rc"
     val apollo = "2.2.3"
     val mutliplatformSettings = "0.6-1.4.0-rc"
+    val klockVersion = "2.0.0-alpha-1.4.0-rc"
 }
 
 plugins {
@@ -46,7 +47,8 @@ kotlin {
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
                 implementation("com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
-                implementation("com.russhwolf:multiplatform-settings:${Versions.mutliplatformSettings}")
+                implementation("com.russhwolf:multiplatform-settings-no-arg:${Versions.mutliplatformSettings}")
+                implementation("com.soywiz.korlibs.klock:klock:${Versions.klockVersion}")
             }
         }
         val commonTest by getting {

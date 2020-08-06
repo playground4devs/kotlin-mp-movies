@@ -3,7 +3,7 @@ package com.github.playground4devs.kmpmovies
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.playground4devs.movies.Movie
-import com.github.playground4devs.movies.MoviesRepository
+import com.github.playground4devs.movies.MovieRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -18,7 +18,7 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _movieList.value = MoviesRepository().loadMovies()
+            _movieList.value = MovieRepository().loadMovies()
         }
     }
 

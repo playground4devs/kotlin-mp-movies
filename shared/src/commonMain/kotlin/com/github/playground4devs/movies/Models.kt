@@ -1,5 +1,8 @@
 package com.github.playground4devs.movies
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Image(
         val url: String,
         val width: Int,
@@ -7,6 +10,7 @@ data class Image(
         val caption: String
 )
 
+@Serializable
 data class Movie(
         val title: String,
         val plot: String,
