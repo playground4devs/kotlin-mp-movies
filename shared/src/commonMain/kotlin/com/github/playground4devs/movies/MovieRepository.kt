@@ -14,9 +14,9 @@ class MovieRepository(
 
     private var lastDownload by settings.long(key = "last_download")
 
-    suspend fun loadMovies(): List<Movie> {
+    suspend fun loadMovies(forceFetch: Boolean = false): List<Movie> {
         val now = DateTime.now().unixMillisLong
-        return if (now - lastDownload > 1000 * 60 * 5) {
+        return if (forceFetch || now - lastDownload > 1000 * 60 * 5) {
             try {
                 val moviesFromServer = fetcher.fetchMovies()
                 persister.persist(moviesFromServer)
