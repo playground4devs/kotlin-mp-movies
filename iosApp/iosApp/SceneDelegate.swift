@@ -1,6 +1,5 @@
 import UIKit
 import SwiftUI
-import shared
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,10 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.makeKeyAndVisible()
         }
         
-        let dispatchQueue = DispatchQueue(label: "QueueIdentification", qos: .background)
-        dispatchQueue.async{
-            SampleIosKt.doCoroutine().blockingSubscribe(onSuccess: {s in NSLog(s as! String)}, onThrow: {(k : KotlinThrowable) in NSLog(k.description())})
-        }
+        
 
     }
 
