@@ -20,6 +20,8 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.viewmodel.viewModel
 import com.github.playground4devs.kmpmovies.ui.KmpMovieTheme
 import com.github.playground4devs.kmpmovies.ui.MainScreen
+import com.github.playground4devs.kmpmovies.ui.SecondaryScreen
+import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.ModelSamples
 import com.github.playground4devs.movies.Movie
 import kotlinx.coroutines.flow.collect
@@ -32,18 +34,23 @@ class MainActivity : AppCompatActivity() {
             val model = viewModel<MainViewModel>()
             val currentMovieFlow = model.currentMovie
 
+
+            // Handle back button
+
+            val onBackPressedCallback = onBackPressedDispatcher.addCallback(this@MainActivity) {
+                model.clearMovie()
+            }
             lifecycleScope.launchWhenCreated {
-                val onBackPressedCallback = onBackPressedDispatcher.addCallback(this@MainActivity) {
-                    model.clearMovie()
-                }
+
                 currentMovieFlow.collect {
                     onBackPressedCallback.isEnabled = it != null
                 }
             }
 
-            val currentMovie = currentMovieFlow.collectAsState().value
 
             // Navigation v0.1!
+
+            val currentMovie = currentMovieFlow.collectAsState().value
             when {
                 currentMovie != null -> MovieDetailScreen(
                     movie = currentMovie,
@@ -56,56 +63,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }
-
-@Composable
-fun MovieItem(movie: Movie, onClickMovie: (Movie) -> Unit = {}) = ListItem(
-    text = { Text(movie.title) },
-    overlineText = { Text(movie.genres.joinToString()) },
-    secondaryText = { Text(movie.plot) },
-    trailing = { Text("⭐️ ${movie.rating ?: "N/A"}") },
-    onClick = { onClickMovie(movie) }
-)
-
-@Preview(showBackground = true)
-@Composable
-fun MovieItemPreview() = MovieItem(ModelSamples.movies.first())
-
-
-@Composable
-fun MovieListScreen(movieList: List<Movie>, onClickMovie: (Movie) -> Unit = {}) =
-    MainScreen("Popular Movies & Series") { innerPadding ->
-        LazyColumnItems(movieList) { movie ->
-            MovieItem(movie, onClickMovie)
-        }
-    }
-
-@Preview(showBackground = true)
-@Composable
-fun MovieListScreenPreview() = MovieListScreen(ModelSamples.movies)
-
-
-@Composable
-fun MovieDetailScreen(movie: Movie, onArrowBackClick: () -> Unit = {}) =
-    KmpMovieTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text(movie.title) },
-                    navigationIcon = {
-                        IconButton(onClick = onArrowBackClick) {
-                            Icon(Icons.Filled.ArrowBack)
-                        }
-                    }
-                )
-            },
-            bodyContent = {
-                MovieItem(movie)
-            }
-        )
-    }
-
-@Preview(showBackground = true)
-@Composable
-fun MovieDetailScreenPreview() = MovieDetailScreen(ModelSamples.movies.first())

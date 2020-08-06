@@ -4,6 +4,8 @@ import com.russhwolf.settings.Settings
 import com.russhwolf.settings.invoke
 import com.russhwolf.settings.long
 import com.soywiz.klock.DateTime
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class MovieRepository(
     private val fetcher: MovieFetcher = MovieFetcher(),
@@ -14,19 +16,31 @@ class MovieRepository(
 
     private var lastDownload by settings.long(key = "last_download")
 
-    suspend fun loadMovies(): List<Movie> {
+    suspend fun loadMovies(forceFetch: Boolean = false): Flow<Lce<List<Movie>>> {
+        return flow {
+            emit(Lce.Loading)
+            emit(loadLce(forceFetch))
+        }
+    }
+
+    private suspend fun loadLce(forceFetch: Boolean): Lce<List<Movie>> {
         val now = DateTime.now().unixMillisLong
-        return if (now - lastDownload > 1000 * 60 * 5) {
+        return if (forceFetch || now - lastDownload > 1000 * 60 * 5) {
             try {
                 val moviesFromServer = fetcher.fetchMovies()
                 persister.persist(moviesFromServer)
                 lastDownload = now
-                moviesFromServer
+                Lce.Success(moviesFromServer)
             } catch (e: Exception) {
-                persister.load() ?: throw e
+                val dataFromCache = persister.load()
+                if (dataFromCache != null) {
+                    Lce.Success(dataFromCache)
+                } else {
+                    Lce.Error(e)
+                }
             }
         } else {
-            persister.load()!!
+            Lce.Success(persister.load()!!)
         }
     }
 }

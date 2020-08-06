@@ -2,23 +2,28 @@ package com.github.playground4devs.kmpmovies
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.Movie
 import com.github.playground4devs.movies.MovieRepository
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    val _movieList = MutableStateFlow<List<Movie>>(emptyList())
-    val movieList = _movieList as StateFlow<List<Movie>>
+    private val _movieList = MutableStateFlow<Lce<List<Movie>>>(Lce.Loading)
+    val movieList = _movieList as StateFlow<Lce<List<Movie>>>
 
 
-    val _currentMovie = MutableStateFlow<Movie?>(null)
+    private val _currentMovie = MutableStateFlow<Movie?>(null)
     val currentMovie = _currentMovie as StateFlow<Movie?>
 
     init {
         viewModelScope.launch {
-            _movieList.value = MovieRepository().loadMovies()
+             MovieRepository().loadMovies().collect {
+                 _movieList.value = it
+             }
         }
     }
 
