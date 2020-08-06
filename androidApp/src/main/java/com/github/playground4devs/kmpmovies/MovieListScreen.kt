@@ -6,20 +6,29 @@ import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.material.ListItem
 import androidx.ui.tooling.preview.Preview
 import com.github.playground4devs.kmpmovies.ui.MainScreen
+import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.ModelSamples
 import com.github.playground4devs.movies.Movie
 
 @Composable
-fun MovieListScreen(movieList: List<Movie>, onClickMovie: (Movie) -> Unit = {}) =
+fun MovieListScreen(movieList: Lce<List<Movie>>, onClickMovie: (Movie) -> Unit = {}) =
     MainScreen("Popular Movies & Series") { innerPadding ->
-        LazyColumnItems(movieList) { movie ->
-            MovieItem(movie, onClickMovie)
+        when (movieList) {
+            is Lce.Success -> LazyColumnItems(movieList.data) { movie ->
+                MovieItem(movie, onClickMovie)
+            }
+            is Lce.Loading -> {
+                Text("Loading...")
+            }
+            is Lce.Error -> {
+                Text("Error...")
+            }
         }
     }
 
 @Preview(showBackground = true)
 @Composable
-fun MovieListScreenPreview() = MovieListScreen(ModelSamples.movies)
+fun MovieListScreenPreview() = MovieListScreen(Lce.Success(ModelSamples.movies))
 
 @Composable
 fun MovieItem(movie: Movie, onClickMovie: (Movie) -> Unit = {}) = ListItem(

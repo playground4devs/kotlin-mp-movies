@@ -21,6 +21,7 @@ import androidx.ui.viewmodel.viewModel
 import com.github.playground4devs.kmpmovies.ui.KmpMovieTheme
 import com.github.playground4devs.kmpmovies.ui.MainScreen
 import com.github.playground4devs.kmpmovies.ui.SecondaryScreen
+import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.ModelSamples
 import com.github.playground4devs.movies.Movie
 import kotlinx.coroutines.flow.collect
