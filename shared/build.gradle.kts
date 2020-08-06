@@ -1,11 +1,18 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+object Versions {
+    val kotlinxSerialization = "1.0-M1-1.4.0-rc"
+    val apollo = "2.2.3"
+}
+
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization") version "1.4.0-rc"
     id("com.android.library")
     id("kotlin-android-extensions")
-    id("com.apollographql.apollo").version("2.2.3")
+    id("com.apollographql.apollo") version "2.2.3"
 }
 group = "com.github.playground4devs.kmpmovies"
 version = "1.0-SNAPSHOT"
@@ -18,6 +25,7 @@ repositories {
     maven {
         url = uri("https://dl.bintray.com/kotlin/kotlin-eap")
     }
+    maven { url = uri("https://kotlin.bintray.com/kotlinx") }
 }
 kotlin {
     android()
@@ -34,8 +42,9 @@ kotlin {
                 implementation(kotlin("stdlib-common"))
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-1.4.0-rc")
 //                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
-                implementation("com.apollographql.apollo:apollo-api:2.2.3")
-                implementation("com.apollographql.apollo:apollo-runtime-kotlin:2.2.3")
+                implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
+                implementation("com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
             }
         }
         val commonTest by getting {
@@ -47,13 +56,15 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("androidx.core:core-ktx:1.3.1")
-                implementation("com.apollographql.apollo:apollo-api:2.2.3")
+                implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
             }
         }
         val androidTest by getting
         val iosMain by getting {
             dependencies {
-                implementation("com.apollographql.apollo:apollo-api:2.2.3")
+                implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
             }
         }
         val iosTest by getting
