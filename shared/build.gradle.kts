@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 object Versions {
     val kotlinxSerialization = "1.0-M1-1.4.0-rc"
     val apollo = "2.2.3"
+    val mutliplatformSettings = "0.6-1.4.0-rc"
 }
 
 plugins {
@@ -45,12 +46,14 @@ kotlin {
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
                 implementation("com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
+                implementation("com.russhwolf:multiplatform-settings:${Versions.mutliplatformSettings}")
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
+                implementation("com.russhwolf:multiplatform-settings-test:${Versions.mutliplatformSettings}")
             }
         }
         val androidMain by getting {
