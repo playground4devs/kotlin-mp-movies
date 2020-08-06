@@ -11,11 +11,37 @@ import shared
 
 struct MovieList : View {
     
+    let nativeMovies = NativeMovies()
+    
+    @State private var toggle = false
+    
     var body: some View {
-        List(NativeMovies().movies){movie in
-            MovieElement(movie: movie)
+        VStack {
+            Button("Refresh", action: { self.toggle.toggle() } )
+            
+            Spacer()
+            
+            if toggle {
+                list
+            }
+
         }
     }
+    
+    private var list: some View {
+        if nativeMovies.apolloMovies.isEmpty {
+            NSLog("Using memory movies")
+            return List(nativeMovies.movies){movie in
+                MovieElement(movie: movie)
+            }
+        } else {
+            NSLog("Using Apollo movies")
+            return List(nativeMovies.apolloMovies){movie in
+                MovieElement(movie: movie)
+            }
+        }
+    }
+
 }
 
 struct MovieList_Previews : PreviewProvider {

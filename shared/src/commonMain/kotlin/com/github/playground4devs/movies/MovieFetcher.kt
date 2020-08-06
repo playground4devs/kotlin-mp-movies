@@ -17,7 +17,9 @@ class MovieFetcher {
     )
 
     suspend fun fetchMovies(): List<Movie> {
+        println("Making query")
         val response = apolloClient.query(PopularTitlesQuery()).execute().single()
+        println("Response: $response")
         return response.data
             ?.popularTitles
             ?.titles

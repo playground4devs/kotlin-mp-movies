@@ -29,6 +29,9 @@ sealed class SuspendWrapperParent<T>(private val suspender: suspend () -> T) {
             onThrow(error)
         }
     }
+
+    fun <T> blockingGet() = runBlocking { suspender() }
+
 }
 
 class SuspendWrapper<T : Any>(suspender: suspend () -> T) : SuspendWrapperParent<T>(suspender)

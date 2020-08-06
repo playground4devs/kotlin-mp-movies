@@ -19,4 +19,21 @@ class NativeMovies {
     var movies = ModelSamples().movies.map { (Movie) -> NativeMovie in
         NativeMovie(title: Movie.title, plot: Movie.plot)
     }
+    
+    var apolloMovies : [NativeMovie] = Array()
+    
+    let dispatchQueue = DispatchQueue(label: "Coroutines", qos: .background)
+    
+    init() {
+        dispatchQueue.async {
+            
+            SampleIosKt.getMovies().blockingSubscribe(onSuccess: { (kotlinMovies) in
+                NSLog("Success: download \(kotlinMovies.count) movies")
+                //self.apolloMovies = kotlinMovies.map { (Movie) -> NativeMovie in
+                //NativeMovie(title: Movie.title, plot: Movie.plot)}
+            }) { (t) in
+                NSLog("Error while downloading movies: \(String(describing: t.cause))")
+            }
+        }
+    }
 }

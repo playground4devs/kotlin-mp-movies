@@ -23,15 +23,20 @@ class MovieRepository(
         }
     }
 
+    suspend fun loadMoviesForIOS() : List<Movie> = loadLce(true).data.orEmpty()
+
     private suspend fun loadLce(forceFetch: Boolean): Lce<List<Movie>> {
+        println("Loading LCE data")
         val now = DateTime.now().unixMillisLong
         return if (forceFetch || now - lastDownload > 1000 * 60 * 5) {
             try {
                 val moviesFromServer = fetcher.fetchMovies()
+                println("Movies downloaded")
                 persister.persist(moviesFromServer)
                 lastDownload = now
                 Lce.Success(moviesFromServer)
             } catch (e: Exception) {
+                println("Something wrong happened: ${e.message}")
                 val dataFromCache = persister.load()
                 if (dataFromCache != null) {
                     Lce.Success(dataFromCache)
