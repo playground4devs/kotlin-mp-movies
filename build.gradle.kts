@@ -11,6 +11,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
         classpath("com.android.tools.build:gradle:4.2.0-alpha07")
         classpath(kotlin("serialization", version = "1.3.72"))
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.28.3-alpha")
     }
 }
 group = "com.github.playground4devs.kmpmovies"

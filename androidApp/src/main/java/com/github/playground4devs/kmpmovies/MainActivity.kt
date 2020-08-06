@@ -2,21 +2,24 @@ package com.github.playground4devs.kmpmovies
 
 import android.os.Bundle
 import androidx.activity.addCallback
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.collectAsState
 import androidx.lifecycle.lifecycleScope
 import androidx.ui.core.setContent
-import androidx.ui.viewmodel.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val model: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val model = viewModel<MainViewModel>()
             val currentMovieFlow = model.currentMovie
-
 
             // Handle back button
 

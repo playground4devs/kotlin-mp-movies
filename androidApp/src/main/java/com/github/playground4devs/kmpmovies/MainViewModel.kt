@@ -1,5 +1,6 @@
 package com.github.playground4devs.kmpmovies
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.playground4devs.movies.Lce
@@ -9,8 +10,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+class MainViewModel @ViewModelInject constructor(
+    private val repository: MovieRepository
+) : ViewModel() {
     private val _movieList = MutableStateFlow<Lce<List<Movie>>>(Lce.Loading)
     val movieList = _movieList as StateFlow<Lce<List<Movie>>>
 
@@ -20,7 +24,7 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            MovieRepository().loadMovies().collect {
+            repository.loadMovies().collect {
                 _movieList.value = it
             }
         }
