@@ -9,3 +9,13 @@ actual object Platform {
 }
 
 fun doCoroutine() = SuspendWrapper { awaitTest() }
+
+fun getMoviesBlocking(): List<Movie> =
+        SuspendWrapper { MovieRepository().loadMoviesForIOS() }
+                .blockingGet<List<Movie>>()
+                .toList()
+
+fun getMovies() : SuspendWrapper<List<Movie>> = SuspendWrapper {
+    println("Downloading movies")
+    MovieRepository().loadMoviesForIOS()
+}
