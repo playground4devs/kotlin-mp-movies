@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.Movie
 import com.github.playground4devs.movies.MovieRepository
-import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
@@ -21,9 +20,9 @@ class MainViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-             MovieRepository().loadMovies().collect {
-                 _movieList.value = it
-             }
+            MovieRepository().loadMovies().collect {
+                _movieList.value = it
+            }
         }
     }
 
