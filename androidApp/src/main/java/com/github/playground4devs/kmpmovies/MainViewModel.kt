@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-    val _movieList = MutableStateFlow<List<Movie>>(emptyList())
+    private val _movieList = MutableStateFlow<List<Movie>>(emptyList())
     val movieList = _movieList as StateFlow<List<Movie>>
 
 
-    val _currentMovie = MutableStateFlow<Movie?>(null)
+    private val _currentMovie = MutableStateFlow<Movie?>(null)
     val currentMovie = _currentMovie as StateFlow<Movie?>
 
     init {

@@ -45,25 +45,3 @@ fun KmpMovieTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
             content = content
     )
 }
-
-@Composable
-fun MainScreen(title: String, bodyContent: @Composable (InnerPadding) -> Unit) {
-    KmpMovieTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text(title) }
-                )
-            },
-            bodyContent = bodyContent
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MainScreenPreview() {
-    MainScreen("Title") { innerPadding ->
-        Text("Content", Modifier.padding(innerPadding))
-    }
-}
