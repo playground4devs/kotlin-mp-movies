@@ -12,8 +12,6 @@ import androidx.ui.material.TopAppBar
 import androidx.ui.material.icons.Icons
 import androidx.ui.material.icons.filled.ArrowBack
 import androidx.ui.tooling.preview.Preview
-import com.github.playground4devs.kmpmovies.MovieItem
-import com.github.playground4devs.movies.Movie
 
 
 @Composable
@@ -37,7 +35,11 @@ fun MainScreenPreview() = MainScreen("Title") { innerPadding ->
 }
 
 @Composable
-fun SecondaryScreen(title: String, onArrowBackClick: () -> Unit = {}, bodyContent: @Composable (InnerPadding) -> Unit) =
+fun SecondaryScreen(
+    title: String,
+    onArrowBackClick: () -> Unit = {},
+    bodyContent: @Composable (InnerPadding) -> Unit
+) =
     KmpMovieTheme {
         Scaffold(
             topBar = {

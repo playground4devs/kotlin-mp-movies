@@ -9,3 +9,5 @@ gen/
 *.idea
 /androidApp/build
 /shared/build
+/iosApp/iosApp.xcodeproj/xcuserdata/roberto.xcuserdatad/xcschemes/xcschememanagement.plist
+/iosApp/iosApp.xcodeproj/project.xcworkspace/xcuserdata/roberto.xcuserdatad/UserInterfaceState.xcuserstate

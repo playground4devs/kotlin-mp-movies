@@ -1,33 +1,30 @@
 package com.github.playground4devs.kmpmovies.ui
 
 import androidx.compose.Composable
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Text
 import androidx.ui.foundation.isSystemInDarkTheme
-import androidx.ui.layout.InnerPadding
-import androidx.ui.layout.padding
-import androidx.ui.material.*
-import androidx.ui.tooling.preview.Preview
+import androidx.ui.material.MaterialTheme
+import androidx.ui.material.darkColorPalette
+import androidx.ui.material.lightColorPalette
 
 private val DarkColorPalette = darkColorPalette(
-        primary = purple200,
-        primaryVariant = purple700,
-        secondary = teal200
+    primary = purple200,
+    primaryVariant = purple700,
+    secondary = teal200
 )
 
 private val LightColorPalette = lightColorPalette(
-        primary = purple500,
-        primaryVariant = purple700,
-        secondary = teal200
+    primary = purple500,
+    primaryVariant = purple700,
+    secondary = teal200
 
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+    /* Other default colors to override
+background = Color.White,
+surface = Color.White,
+onPrimary = Color.White,
+onSecondary = Color.Black,
+onBackground = Color.Black,
+onSurface = Color.Black,
+*/
 )
 
 @Composable
@@ -39,9 +36,9 @@ fun KmpMovieTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composab
     }
 
     MaterialTheme(
-            colors = colors,
-            typography = typography,
-            shapes = shapes,
-            content = content
+        colors = colors,
+        typography = typography,
+        shapes = shapes,
+        content = content
     )
 }
