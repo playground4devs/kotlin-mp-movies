@@ -3,15 +3,16 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 object Versions {
-    val kotlinxSerialization = "1.0-M1-1.4.0-rc"
+    val kotlinxSerialization = "0.20.0"
     val apollo = "2.2.3"
-    val mutliplatformSettings = "0.6-1.4.0-rc"
-    val klockVersion = "2.0.0-alpha-1.4.0-rc"
+    val mutliplatformSettings = "0.6"
+    val klockVersion = "1.11.14"
 }
 
 plugins {
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version "1.4.0-rc"
+//    kotlin("plugin.serialization") version "1.3.72"
+    id("kotlinx-serialization")
     id("com.android.library")
     id("kotlin-android-extensions")
     id("com.apollographql.apollo") version "2.2.3"
@@ -46,7 +47,7 @@ kotlin {
 //                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
                 implementation("com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}")
                 implementation("com.russhwolf:multiplatform-settings-no-arg:${Versions.mutliplatformSettings}")
                 implementation("com.soywiz.korlibs.klock:klock:${Versions.klockVersion}")
             }
@@ -69,7 +70,7 @@ kotlin {
         val iosMain by getting {
             dependencies {
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}")
             }
         }
         val iosTest by getting
