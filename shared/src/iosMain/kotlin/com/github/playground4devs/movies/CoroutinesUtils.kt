@@ -1,4 +1,4 @@
-package sample
+package com.github.playground4devs.movies
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
