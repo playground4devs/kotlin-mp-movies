@@ -32,7 +32,7 @@ class MovieFetcher {
             primaryImage?.toImage(),
             ratingsSummary?.aggregateRating,
             genres?.genres.orEmpty().map { it.text },
-            this.releaseDate?.toLong()
+            releaseDate?.toLong()
         )
     }
 

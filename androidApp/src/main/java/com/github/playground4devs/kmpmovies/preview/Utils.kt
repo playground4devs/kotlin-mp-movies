@@ -16,8 +16,9 @@ fun toConstruct(obj: Any?): String = when (obj) {
                 title = "${obj.title}",
                 plot =  "${obj.plot}",
                 image = ${toConstruct(obj.image)},
-                rating = ${obj.rating ?: "null"},
-                genres =  ${toConstruct(obj.genres)}
+                rating = ${obj.rating},
+                genres =  ${toConstruct(obj.genres)},
+                releaseDate =  ${obj.releaseDate}
             )
         """.trimIndent()
     is Image -> """

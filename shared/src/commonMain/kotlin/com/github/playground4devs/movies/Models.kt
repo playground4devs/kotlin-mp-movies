@@ -17,5 +17,5 @@ data class Movie(
     val image: Image?,
     val rating: Double?,
     val genres: List<String>,
-    val releaseDate: Long? = null
+    val releaseDate: Long?
 )

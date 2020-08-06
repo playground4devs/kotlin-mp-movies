@@ -3,6 +3,7 @@ package com.github.playground4devs.kmpmovies
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.github.playground4devs.kmpmovies.preview.toConstruct
 import com.github.playground4devs.movies.Lce
 import com.github.playground4devs.movies.Movie
 import com.github.playground4devs.movies.MovieRepository
@@ -25,6 +26,7 @@ class MainViewModel @ViewModelInject constructor(
     init {
         viewModelScope.launch {
             repository.loadMovies().collect {
+                println(toConstruct(it.data))
                 _movieList.value = it
             }
         }

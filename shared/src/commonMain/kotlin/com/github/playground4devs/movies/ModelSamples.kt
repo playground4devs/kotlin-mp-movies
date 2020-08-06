@@ -16,7 +16,8 @@ object ModelSamples {
                 "Comedy",
                 "Drama",
                 "Romance"
-            )
+            ),
+            releaseDate = 1595548800000
         ),
         Movie(
             title = "The Umbrella Academy",
@@ -35,7 +36,8 @@ object ModelSamples {
                 "Drama",
                 "Fantasy",
                 "Sci-Fi"
-            )
+            ),
+            releaseDate = 1550188800000
         ),
         Movie(
             title = "The Kissing Booth 2",
@@ -50,7 +52,8 @@ object ModelSamples {
             genres = listOf(
                 "Comedy",
                 "Romance"
-            )
+            ),
+            releaseDate = 1595548800000
         ),
         Movie(
             title = "Cursed",
@@ -66,7 +69,8 @@ object ModelSamples {
                 "Adventure",
                 "Drama",
                 "Fantasy"
-            )
+            ),
+            releaseDate = 1594944000000
         ),
         Movie(
             title = "Dark",
@@ -84,7 +88,8 @@ object ModelSamples {
                 "Mystery",
                 "Sci-Fi",
                 "Thriller"
-            )
+            ),
+            releaseDate = 1512086400000
         ),
         Movie(
             title = "The Old Guard",
@@ -101,7 +106,8 @@ object ModelSamples {
                 "Adventure",
                 "Fantasy",
                 "Thriller"
-            )
+            ),
+            releaseDate = 1594339200000
         ),
         Movie(
             title = "After We Collided",
@@ -116,7 +122,8 @@ object ModelSamples {
             genres = listOf(
                 "Drama",
                 "Romance"
-            )
+            ),
+            releaseDate = 1601596800000
         ),
         Movie(
             title = "Yellowstone",
@@ -131,7 +138,8 @@ object ModelSamples {
             genres = listOf(
                 "Drama",
                 "Western"
-            )
+            ),
+            releaseDate = 1529452800000
         ),
         Movie(
             title = "The Kissing Booth",
@@ -146,7 +154,8 @@ object ModelSamples {
             genres = listOf(
                 "Comedy",
                 "Romance"
-            )
+            ),
+            releaseDate = 1525996800000
         ),
         Movie(
             title = "Perry Mason",
@@ -161,7 +170,8 @@ object ModelSamples {
             genres = listOf(
                 "Crime",
                 "Drama"
-            )
+            ),
+            releaseDate = 1592697600000
         ),
         Movie(
             title = "365 Days",
@@ -176,7 +186,8 @@ object ModelSamples {
             genres = listOf(
                 "Drama",
                 "Romance"
-            )
+            ),
+            releaseDate = 1581033600000
         ),
         Movie(
             title = "Game of Thrones",
@@ -194,7 +205,8 @@ object ModelSamples {
                 "Drama",
                 "Fantasy",
                 "Romance"
-            )
+            ),
+            releaseDate = 1302998400000
         ),
         Movie(
             title = "Greyhound",
@@ -211,7 +223,8 @@ object ModelSamples {
                 "Drama",
                 "History",
                 "War"
-            )
+            ),
+            releaseDate = 1594339200000
         ),
         Movie(
             title = "The Boys",
@@ -228,7 +241,8 @@ object ModelSamples {
                 "Comedy",
                 "Crime",
                 "Sci-Fi"
-            )
+            ),
+            releaseDate = 1564099200000
         ),
         Movie(
             title = "Palm Springs",
@@ -245,7 +259,8 @@ object ModelSamples {
                 "Fantasy",
                 "Mystery",
                 "Romance"
-            )
+            ),
+            releaseDate = 1594339200000
         ),
         Movie(
             title = "The Rental",
@@ -260,7 +275,8 @@ object ModelSamples {
             genres = listOf(
                 "Horror",
                 "Thriller"
-            )
+            ),
+            releaseDate = 1595548800000
         ),
         Movie(
             title = "Good Girls",
@@ -276,7 +292,8 @@ object ModelSamples {
                 "Comedy",
                 "Crime",
                 "Drama"
-            )
+            ),
+            releaseDate = 1519603200000
         ),
         Movie(
             title = "Hamilton",
@@ -293,7 +310,8 @@ object ModelSamples {
                 "Drama",
                 "History",
                 "Musical"
-            )
+            ),
+            releaseDate = 1593734400000
         ),
         Movie(
             title = "Shameless",
@@ -308,7 +326,8 @@ object ModelSamples {
             genres = listOf(
                 "Comedy",
                 "Drama"
-            )
+            ),
+            releaseDate = 1294531200000
         ),
         Movie(
             title = "The Office",
@@ -322,7 +341,8 @@ object ModelSamples {
             rating = 8.9,
             genres = listOf(
                 "Comedy"
-            )
+            ),
+            releaseDate = 1111622400000
         )
     )
 }
