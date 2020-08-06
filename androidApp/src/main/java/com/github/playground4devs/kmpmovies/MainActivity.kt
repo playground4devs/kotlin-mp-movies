@@ -4,10 +4,28 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.lazy.LazyColumnItems
+import androidx.compose.material.IconButton
+import androidx.compose.material.ListItem
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.platform.setContent
+import androidx.compose.ui.viewinterop.viewModel
 import androidx.compose.collectAsState
 import androidx.lifecycle.lifecycleScope
 import androidx.ui.core.setContent
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.ui.tooling.preview.Preview
+import com.github.playground4devs.kmpmovies.ui.KmpMovieTheme
+import com.github.playground4devs.kmpmovies.ui.MainScreen
+import com.github.playground4devs.movies.ModelSamples
+import com.github.playground4devs.movies.Movie
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint

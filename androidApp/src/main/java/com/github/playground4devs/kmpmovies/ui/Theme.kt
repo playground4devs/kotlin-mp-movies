@@ -1,18 +1,26 @@
 package com.github.playground4devs.kmpmovies.ui
 
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.InnerPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.ui.tooling.preview.Preview
 import androidx.compose.Composable
 import androidx.ui.foundation.isSystemInDarkTheme
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.darkColorPalette
 import androidx.ui.material.lightColorPalette
 
-private val DarkColorPalette = darkColorPalette(
+private val DarkColorPalette = darkColors(
     primary = purple200,
     primaryVariant = purple700,
     secondary = teal200
 )
 
-private val LightColorPalette = lightColorPalette(
+private val LightColorPalette = lightColors(
     primary = purple500,
     primaryVariant = purple700,
     secondary = teal200
