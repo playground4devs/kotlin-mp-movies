@@ -59,6 +59,8 @@ dependencies {
     implementation "androidx.ui:ui-tooling:$compose_version"
     implementation "androidx.compose:compose-runtime:$compose_version"
     implementation "androidx.compose:compose-compiler:$compose_version"
+    implementation "io.coil-kt:coil:0.11.0"
+    implementation "dev.chrisbanes.accompanist:accompanist-coil:0.1.6"
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha06'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha06'
