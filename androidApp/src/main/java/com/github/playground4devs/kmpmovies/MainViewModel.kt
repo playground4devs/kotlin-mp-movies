@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+
+const val DEBUG = false
 
 class MainViewModel @ViewModelInject constructor(
     private val repository: MovieRepository
@@ -22,7 +23,7 @@ class MainViewModel @ViewModelInject constructor(
     init {
         viewModelScope.launch {
             repository.loadMovies().collect {
-                println(toConstruct(it.data))
+                if (DEBUG) println(toConstruct(it.data))
                 _movieList.value = it
             }
         }

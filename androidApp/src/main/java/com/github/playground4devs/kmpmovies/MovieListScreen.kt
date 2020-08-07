@@ -34,7 +34,7 @@ fun MovieListScreen(movieList: Lce<List<Movie>>) =
                     onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
             else
                 LazyColumnItems(movieList.data) { movie ->
-                    MovieItem(movie, onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
+                    MovieItem(movie, showIcon = true, onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
                 }
             is Lce.Loading -> {
                 Text("Loading...")
@@ -93,19 +93,39 @@ fun MovieListScreenPreviewTablet() = MovieListScreen(Lce.Success(ModelSamples.mo
 fun MovieListScreenPreview() = MovieListScreen(Lce.Success(ModelSamples.movies))
 
 @Composable
-fun MovieItem(movie: Movie, showPlot: Boolean = true, onClickMovie: (Movie) -> Unit = {}) =
+fun MovieItem(
+    movie: Movie,
+    showIcon: Boolean = false,
+    showPlot: Boolean = true,
+    onClickMovie: (Movie) -> Unit = {}
+) {
     ListItem(
+        icon = showIf(showIcon) {
+            CoilImage(
+                request = GetRequest.Builder(ContextAmbient.current)
+                    .data(movie.image?.url)
+                    .size(150, 150)
+                    .scale(Scale.FILL)
+                    .build()
+            )
+        },
         text = { Text(movie.title) },
         overlineText = {
             Text(movie.genres.joinToString() + " ⭐️ ${movie.rating ?: "N/A"}")
         },
-        secondaryText = {
-            if (showPlot) {
-                Text(movie.plot)
-            }
-        },
+        secondaryText = showIf(showPlot) { Text(movie.plot) },
         onClick = { onClickMovie(movie) }
     )
+}
+
+private fun showIf(
+    condition: Boolean,
+    composable: @Composable() () -> Unit
+): @Composable() (() -> Unit)? {
+    return if (condition) {
+        composable
+    } else null
+}
 
 @Composable
 fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
@@ -126,7 +146,7 @@ fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
                 }
             }
             Column {
-                MovieItem(card.movie, card.showPlot, onClickMovie)
+                MovieItem(card.movie, showPlot = card.showPlot, onClickMovie = onClickMovie)
             }
         }
     } else {
@@ -145,7 +165,7 @@ fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
                 )
             }
         }
-        MovieItem(card.movie, card.showPlot, onClickMovie)
+        MovieItem(card.movie, showPlot = card.showPlot, onClickMovie = onClickMovie)
     }
 }
 

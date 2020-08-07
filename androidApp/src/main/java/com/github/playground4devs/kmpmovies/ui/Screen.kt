@@ -16,7 +16,7 @@ import com.github.playground4devs.kmpmovies.getNavigation
 
 
 @Composable
-fun MainScreen(title: String, bodyContent: @Composable (InnerPadding) -> Unit) {
+fun MainScreen(title: String, bodyContent: @Composable() (InnerPadding) -> Unit) {
     KmpMovieTheme {
         Scaffold(
             topBar = {
@@ -38,7 +38,7 @@ fun MainScreenPreview() = MainScreen("Title") { innerPadding ->
 @Composable
 fun SecondaryScreen(
     title: String,
-    bodyContent: @Composable (InnerPadding) -> Unit
+    bodyContent: @Composable() (InnerPadding) -> Unit
 ) = KmpMovieTheme {
     Scaffold(
         topBar = {
