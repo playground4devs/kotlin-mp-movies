@@ -105,7 +105,6 @@ fun MovieItem(
                 request = GetRequest.Builder(ContextAmbient.current)
                     .data(movie.image?.url)
                     .size(150, 150)
-                    .scale(Scale.FILL)
                     .build()
             )
         },
