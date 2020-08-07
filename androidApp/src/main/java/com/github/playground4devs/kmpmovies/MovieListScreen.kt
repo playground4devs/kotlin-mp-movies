@@ -1,21 +1,21 @@
 package com.github.playground4devs.kmpmovies
 
 import androidx.compose.Composable
+import androidx.ui.core.ContentScale
 import androidx.ui.core.ContextAmbient
 import androidx.ui.core.DensityAmbient
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
-import androidx.ui.foundation.drawBackground
 import androidx.ui.foundation.lazy.LazyColumnItems
 import androidx.ui.graphics.Color
 import androidx.ui.layout.*
 import androidx.ui.material.Divider
 import androidx.ui.material.ListItem
+import androidx.ui.text.style.TextAlign
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 import coil.request.GetRequest
-import coil.size.Precision
-import coil.size.Scale
 import com.github.playground4devs.kmpmovies.ui.MainScreen
 import com.github.playground4devs.movies.*
 import com.github.playground4devs.movies.MovieImagePosition.LEFT
@@ -134,13 +134,11 @@ fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
             Column {
                 card.movie.image?.let {
                     CoilImage(
-                        modifier = Modifier.padding(top = 16.dp, start = 16.dp),
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.padding(top = 16.dp, start = 16.dp)
+                            .width(100.dp).height(100.dp),
                         request = GetRequest.Builder(ContextAmbient.current)
                             .data(it.url)
-                            .size(200, 200)
-                            //                        .size(it.width, it.height)
-                            .precision(Precision.EXACT)
-                            .scale(Scale.FILL)
                             .build()
                     )
                 }
@@ -153,15 +151,19 @@ fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
         if (card.imagePosition == TOP) {
             card.movie.image?.let {
                 CoilImage(
-                    modifier = Modifier.padding(16.dp).fillMaxWidth().aspectRatio(1.5f)
-                        .drawBackground(Color.Red),
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                        .fillMaxWidth().aspectRatio(1.5f),
                     request = GetRequest.Builder(ContextAmbient.current)
                         .data(it.url)
-//                        .size(600, 600)
-                        //                        .size(it.width, it.height)
-                        .precision(Precision.INEXACT)
-                        .scale(Scale.FIT)
                         .build()
+                )
+                Text(
+                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
+                    fontSize = 12.sp,
+                    text = it.caption,
+                    color = Color.Gray,
+                    textAlign = TextAlign.End
                 )
             }
         }
