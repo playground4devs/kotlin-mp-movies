@@ -17,8 +17,8 @@ import com.github.playground4devs.movies.Movie
 import java.util.*
 
 @Composable
-fun MovieDetailScreen(movie: Movie, onArrowBackClick: () -> Unit = {}) =
-    SecondaryScreen(movie.title, onArrowBackClick) { innerPadding ->
+fun MovieDetailScreen(movie: Movie) =
+    SecondaryScreen(movie.title) { innerPadding ->
         Column {
             ConstraintLayout(Modifier.padding(16.dp)) {
                 val (GENRE, RATING, PLOT, RELEASE_DATE) = createRefs()

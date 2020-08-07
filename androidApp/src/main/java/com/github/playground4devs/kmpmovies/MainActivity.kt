@@ -4,9 +4,13 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.Composable
 import androidx.compose.collectAsState
 import androidx.lifecycle.lifecycleScope
+import androidx.ui.animation.Crossfade
 import androidx.ui.core.setContent
+import androidx.ui.material.Divider
+import androidx.ui.viewmodel.viewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -19,34 +23,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val currentMovieFlow = model.currentMovie
+            val navigation = getNavigation()
 
             // Handle back button
-
             val onBackPressedCallback = onBackPressedDispatcher.addCallback(this@MainActivity) {
-                model.clearMovie()
+                navigation.onBack()
             }
             lifecycleScope.launchWhenCreated {
-
-                currentMovieFlow.collect {
-                    onBackPressedCallback.isEnabled = it != null
+                navigation.currentScreen.collect {
+                    onBackPressedCallback.isEnabled = it != Screen.Home
                 }
             }
+            Divider()
 
 
-            // Navigation v0.1!
+            // Navigation v0.2!
 
-            val currentMovie = currentMovieFlow.collectAsState().value
-            when {
-                currentMovie != null -> MovieDetailScreen(
-                    movie = currentMovie,
-                    onArrowBackClick = { model.clearMovie() }
-                )
-                else -> MovieListScreen(
-                    movieList = model.movieList.collectAsState().value,
-                    onClickMovie = { model.onClickMovie(it) }
-                )
+            Crossfade(navigation.currentScreen.collectAsState().value) { screen ->
+                when (screen) {
+                    Screen.Home -> MovieListScreen(
+                        movieList = model.movieList.collectAsState().value
+                    )
+                    is Screen.Detail -> MovieDetailScreen(
+                        movie = screen.movie
+                    )
+                }
             }
         }
     }
 }
+

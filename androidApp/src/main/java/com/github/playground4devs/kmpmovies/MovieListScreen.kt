@@ -11,11 +11,12 @@ import com.github.playground4devs.movies.ModelSamples
 import com.github.playground4devs.movies.Movie
 
 @Composable
-fun MovieListScreen(movieList: Lce<List<Movie>>, onClickMovie: (Movie) -> Unit = {}) =
+fun MovieListScreen(movieList: Lce<List<Movie>>) =
     MainScreen("Popular Movies & Series") { innerPadding ->
+        val navigation = getNavigation()
         when (movieList) {
             is Lce.Success -> LazyColumnItems(movieList.data) { movie ->
-                MovieItem(movie, onClickMovie)
+                MovieItem(movie, onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
             }
             is Lce.Loading -> {
                 Text("Loading...")

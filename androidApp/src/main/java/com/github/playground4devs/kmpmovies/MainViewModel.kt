@@ -19,10 +19,6 @@ class MainViewModel @ViewModelInject constructor(
     private val _movieList = MutableStateFlow<Lce<List<Movie>>>(Lce.Loading)
     val movieList = _movieList as StateFlow<Lce<List<Movie>>>
 
-
-    private val _currentMovie = MutableStateFlow<Movie?>(null)
-    val currentMovie = _currentMovie as StateFlow<Movie?>
-
     init {
         viewModelScope.launch {
             repository.loadMovies().collect {
@@ -30,13 +26,5 @@ class MainViewModel @ViewModelInject constructor(
                 _movieList.value = it
             }
         }
-    }
-
-    fun onClickMovie(movie: Movie) {
-        _currentMovie.value = movie
-    }
-
-    fun clearMovie() {
-        _currentMovie.value = null
     }
 }
