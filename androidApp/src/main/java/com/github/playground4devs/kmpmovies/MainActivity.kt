@@ -4,13 +4,11 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
 import androidx.compose.collectAsState
 import androidx.lifecycle.lifecycleScope
 import androidx.ui.animation.Crossfade
 import androidx.ui.core.setContent
 import androidx.ui.material.Divider
-import androidx.ui.viewmodel.viewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
