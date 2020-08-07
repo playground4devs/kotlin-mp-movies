@@ -34,7 +34,10 @@ fun MovieListScreen(movieList: Lce<List<Movie>>) =
                     onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
             else
                 LazyColumnItems(movieList.data) { movie ->
-                    MovieItem(movie, showIcon = true, onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
+                    MovieItem(
+                        movie,
+                        showIcon = true,
+                        onClickMovie = { navigation.navigateTo(Screen.Detail(it)) })
                 }
             is Lce.Loading -> {
                 Text("Loading...")
@@ -96,19 +99,41 @@ fun MovieListScreenPreview() = MovieListScreen(Lce.Success(ModelSamples.movies))
 fun MovieItem(
     movie: Movie,
     showIcon: Boolean = false,
+    showLargeImage: Boolean = false,
     showPlot: Boolean = true,
     onClickMovie: (Movie) -> Unit = {}
 ) {
     ListItem(
         icon = showIf(showIcon) {
             CoilImage(
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.width(100.dp).height(100.dp),
                 request = GetRequest.Builder(ContextAmbient.current)
                     .data(movie.image?.url)
-                    .size(150, 150)
                     .build()
             )
         },
-        text = { Text(movie.title) },
+        text = {
+            Column {
+                movie.image?.takeIf { showLargeImage }?.let {
+                    CoilImage(
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxWidth().aspectRatio(1.5f),
+                        request = GetRequest.Builder(ContextAmbient.current)
+                            .data(it.url)
+                            .build()
+                    )
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        fontSize = 12.sp,
+                        text = it.caption,
+                        color = Color.Gray,
+                        textAlign = TextAlign.End
+                    )
+                }
+                Text(movie.title)
+            }
+        },
         overlineText = {
             Text(movie.genres.joinToString() + " ⭐️ ${movie.rating ?: "N/A"}")
         },
@@ -127,48 +152,14 @@ private fun showIf(
 }
 
 @Composable
-fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) {
-    if (card.imagePosition == LEFT) {
-        Row {
-            Column {
-                card.movie.image?.let {
-                    CoilImage(
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.padding(top = 16.dp, start = 16.dp)
-                            .width(100.dp).height(100.dp),
-                        request = GetRequest.Builder(ContextAmbient.current)
-                            .data(it.url)
-                            .build()
-                    )
-                }
-            }
-            Column {
-                MovieItem(card.movie, showPlot = card.showPlot, onClickMovie = onClickMovie)
-            }
-        }
-    } else {
-        if (card.imagePosition == TOP) {
-            card.movie.image?.let {
-                CoilImage(
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.padding(top = 16.dp, start = 16.dp, end = 16.dp)
-                        .fillMaxWidth().aspectRatio(1.5f),
-                    request = GetRequest.Builder(ContextAmbient.current)
-                        .data(it.url)
-                        .build()
-                )
-                Text(
-                    modifier = Modifier.padding(horizontal = 16.dp).fillMaxWidth(),
-                    fontSize = 12.sp,
-                    text = it.caption,
-                    color = Color.Gray,
-                    textAlign = TextAlign.End
-                )
-            }
-        }
-        MovieItem(card.movie, showPlot = card.showPlot, onClickMovie = onClickMovie)
-    }
-}
+fun MovieCardItem(card: MovieCard, onClickMovie: (Movie) -> Unit = {}) =
+    MovieItem(
+        card.movie,
+        showPlot = card.showPlot,
+        showIcon = card.imagePosition == LEFT,
+        showLargeImage = card.imagePosition == TOP,
+        onClickMovie = onClickMovie
+    )
 
 @Preview(showBackground = true)
 @Composable
