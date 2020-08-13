@@ -3,6 +3,7 @@ package com.github.playground4devs.kmpmovies
 import android.text.format.DateFormat
 import androidx.compose.Composable
 import androidx.ui.core.ContextAmbient
+import androidx.ui.core.DensityAmbient
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
 import androidx.ui.layout.Column
@@ -11,8 +12,6 @@ import androidx.ui.layout.padding
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import coil.request.GetRequest
-import coil.size.Precision
-import coil.size.Scale
 import com.github.playground4devs.kmpmovies.ui.SecondaryScreen
 import com.github.playground4devs.kmpmovies.ui.typography
 import com.github.playground4devs.movies.ModelSamples
@@ -56,25 +55,25 @@ fun MovieDetailScreen(movie: Movie) =
 
                 val releaseDate = movie.releaseDate
                     ?.let { DateFormat.getDateFormat(ContextAmbient.current).format(Date(it)) }
-                if (releaseDate != null) {
-                    Text(
-                        text = "Release date: $releaseDate",
-                        modifier = Modifier.constrainAs(RELEASE_DATE) {
-                            top.linkTo(PLOT.bottom, margin = 16.dp)
-                            end.linkTo(parent.end)
-                        },
-                        style = typography.body2
-                    )
-                }
+                    ?: "Unknown"
+                Text(
+                    text = "Release date: $releaseDate",
+                    modifier = Modifier.constrainAs(RELEASE_DATE) {
+                        top.linkTo(PLOT.bottom, margin = 16.dp)
+                        end.linkTo(parent.end)
+                    },
+                    style = typography.body2
+                )
 
                 movie.image?.let { image ->
+                    val size = with(DensityAmbient.current) { 200.dp.toIntPx() }
                     CoilImage(
                         modifier = Modifier.constrainAs(IMAGE) {
                             top.linkTo(BOTTOM_BARRIER)
                         }.padding(top = 16.dp, start = 16.dp),
                         request = GetRequest.Builder(ContextAmbient.current)
                             .data(image.url)
-                            .size(movie.image?.width ?: 200, movie.image?.height ?: 200)
+                            .size(size, size)
                             .build()
                     )
                 }

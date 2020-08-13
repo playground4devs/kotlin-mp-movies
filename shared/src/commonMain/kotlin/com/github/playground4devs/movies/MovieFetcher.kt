@@ -44,7 +44,7 @@ class MovieFetcher {
     }
 
     private fun PopularTitlesQuery.ReleaseDate.toLong(): Long? {
-        return if (month != null && day != null) {
+        return if (year != null && month != null && day != null) {
             DateTime(year, month, day).unixMillisLong
         } else {
             null
