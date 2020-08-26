@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 object Versions {
     val kotlinxSerialization = "0.20.0"
-    val apollo = "2.2.3"
+    val apollo = "2.3.1"
     val mutliplatformSettings = "0.6"
     val klockVersion = "1.11.14"
 }
