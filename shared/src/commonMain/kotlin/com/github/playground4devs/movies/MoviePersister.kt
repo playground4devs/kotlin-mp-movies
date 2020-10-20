@@ -13,9 +13,9 @@ class MoviePersister {
     private var cache by settings.nullableString(key = "cache")
 
     fun persist(moviesFromServer: List<Movie>) {
-        cache = json.stringify(ListSerializer(Movie.serializer()), moviesFromServer)
+        cache = json.encodeToString(ListSerializer(Movie.serializer()), moviesFromServer)
     }
 
     fun load(): List<Movie>? =
-        cache?.let { json.parse(ListSerializer(Movie.serializer()), it) }
+        cache?.let { json.decodeFromString(ListSerializer(Movie.serializer()), it) }
 }

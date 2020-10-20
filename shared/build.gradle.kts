@@ -3,10 +3,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 object Versions {
-    val kotlinxSerialization = "0.20.0"
-    val apollo = "2.2.3"
+    val kotlinxSerialization = "1.0.0"
+    val apollo = "2.4.1"
     val mutliplatformSettings = "0.6"
-    val klockVersion = "1.11.14"
+    val klockVersion = "1.12.0"
 }
 
 plugins {
@@ -15,7 +15,7 @@ plugins {
     id("kotlinx-serialization")
     id("com.android.library")
     id("kotlin-android-extensions")
-    id("com.apollographql.apollo") version "2.2.3"
+    id("com.apollographql.apollo") version "2.4.1"
 }
 group = "com.github.playground4devs.kmpmovies"
 version = "1.0-SNAPSHOT"
@@ -53,7 +53,7 @@ kotlin {
 //                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
                 implementation("com.apollographql.apollo:apollo-runtime-kotlin:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:${Versions.kotlinxSerialization}")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinxSerialization}")
                 implementation("com.russhwolf:multiplatform-settings-no-arg:${Versions.mutliplatformSettings}")
                 implementation("com.soywiz.korlibs.klock:klock:${Versions.klockVersion}")
             }
@@ -69,14 +69,12 @@ kotlin {
             dependencies {
                 implementation("androidx.core:core-ktx:1.3.1")
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:${Versions.kotlinxSerialization}")
             }
         }
         val androidTest by getting
         val iosMain by getting {
             dependencies {
                 implementation("com.apollographql.apollo:apollo-api:${Versions.apollo}")
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:${Versions.kotlinxSerialization}")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
             }
         }
